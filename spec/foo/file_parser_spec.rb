@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
-
 RSpec.describe Foo::FileParser do
   context 'when file exists with correct syntax' do
     before :all do
@@ -21,7 +19,7 @@ RSpec.describe Foo::FileParser do
     end
 
     it 'should correctly parse its content' do
-      lines = Foo::FileParser.new('valid_complete.sudoku').parse
+      lines = described_class.new('valid_complete.sudoku').parse
 
       expect(lines).to eq(
         [
@@ -47,7 +45,7 @@ RSpec.describe Foo::FileParser do
 
   context "when file doesn't exists" do
     it 'should raise an exception' do
-      expect { Foo::FileParser.new('non_existing_file.sudoku').parse }.to raise_error(Errno::ENOENT)
+      expect { described_class.new('non_existing_file.sudoku').parse }.to raise_error(Errno::ENOENT)
     end
   end
 end

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
-
 RSpec.describe Foo::Puzzle do
   context 'when file exists with correct syntax and valid sudoku' do
     before :all do
@@ -21,7 +19,7 @@ RSpec.describe Foo::Puzzle do
     end
 
     it 'should correctly validate' do
-      expect(Foo::Puzzle.new('valid_complete.sudoku').valid?).to be true
+      expect(described_class.new('valid_complete.sudoku').valid?).to be true
     end
 
     after :all do
@@ -47,7 +45,7 @@ RSpec.describe Foo::Puzzle do
     end
 
     it 'should correctly validate' do
-      expect(Foo::Puzzle.new('invalid_complete.sudoku').valid?).to be false
+      expect(described_class.new('invalid_complete.sudoku').valid?).to be false
     end
 
     after :all do
@@ -57,7 +55,7 @@ RSpec.describe Foo::Puzzle do
 
   context "when file doesn't exists" do
     it 'should raise an exception' do
-      expect { Foo::Puzzle.new('non_existing_file.sudoku').parse }.to raise_error(Errno::ENOENT)
+      expect { described_class.new('non_existing_file.sudoku').parse }.to raise_error(Errno::ENOENT)
     end
   end
 end
