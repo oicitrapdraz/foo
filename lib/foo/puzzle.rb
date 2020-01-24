@@ -30,20 +30,20 @@ module Foo
     private
 
     def no_subgroup_duplicates
-      submatrixes.any? do |matrix|
+      submatrixes.all? do |matrix|
         matrix_values = matrix.each(:all).to_a
         repeated_non_zero_element?(matrix_values)
       end
     end
 
     def no_row_duplicates
-      ROW_INDIXES.any? do |i|
+      ROW_INDIXES.all? do |i|
         repeated_non_zero_element? row(i)
       end
     end
 
     def no_column_duplicates
-      COLUMN_INDIXES.any? do |j|
+      COLUMN_INDIXES.all? do |j|
         repeated_non_zero_element? column(j)
       end
     end
