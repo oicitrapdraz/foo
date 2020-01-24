@@ -29,7 +29,7 @@ RSpec.describe Foo::Puzzle do
     end
   end
 
-  context 'when file exists with correct syntax invalid sudoku' do
+  context 'when file exists with correct syntax and invalid sudoku' do
     before :all do
       open('invalid_complete.sudoku', 'w') do |f|
         f.puts '8 5 0 |0 0 2 |4 7 0'
